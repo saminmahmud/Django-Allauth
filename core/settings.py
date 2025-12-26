@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 
+from django.conf.global_settings import EMAIL_BACKEND
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -123,6 +125,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+# Allauth Docs: https://docs.allauth.org/en/latest/index.html
 
 # Allauth Configuration
 
@@ -133,4 +136,16 @@ AUTHENTICATION_BACKENDS = [
     # `allauth` specific authentication methods, such as login by email
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
+
+ACCOUNT_EMAIL_VERIFICATION = 'none' # options: 'optional', 'mandatory', 'none'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
+
+LOGIN_REDIRECT_URL = 'secret'
+LOGOUT_REDIRECT_URL = '/'
+
+# ACCOUNT_SIGNUP_FIELDS = ['email*', 'password1*', 'password2*']  # Asterisk (*) indicates required fields
+# ACCOUNT_LOGIN_METHODS = {'email', 'username'}  # default: {"username"}, options: "email" or "username"
+
+# ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = True  # Enable email verification by code. (default: False). And set ACCOUNT_EMAIL_VERIFICATION to 'mandatory' or 'optional'.
 
