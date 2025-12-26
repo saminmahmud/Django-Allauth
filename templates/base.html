@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
+    <title>Django-Allauth</title>
+</head>
+<body>
+    <header>
+        <h1>Welcome to Django-Allauth Application</h1>
+        <nav>
+            <a href="{% url 'index' %}">Home</a> |
+            {% comment %} <a href="{% url 'account_login' %}">Login</a> |
+            <a href="{% url 'account_logout' %}">Logout</a> |
+            <a href="{% url 'account_signup' %}">Sign Up</a> | {% endcomment %}
+            <a href="{% url 'secret' %}">Secret Page</a>
+        </nav>
+    </header>
+    <hr>
+    <br>
+
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    
+    <br>
+    <br>
+    <hr>
+    <footer>
+        <p>&copy; 2024 Django-Allauth Application</p>
+    </footer>
+</body>
+</html>
