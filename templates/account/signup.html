@@ -1,4 +1,5 @@
 {% extends "account/base_entrance.html" %}
+{% load socialaccount %}
 {% load allauth i18n %}
 {% block head_title %}
     {% trans "Signup" %}
@@ -40,7 +41,19 @@
             {% trans "Sign up using a passkey" %}
         {% endelement %}
     {% endif %}
+    {% comment %} 
     {% if SOCIALACCOUNT_ENABLED %}
         {% include "socialaccount/snippets/login.html" with page_layout="entrance" %}
-    {% endif %}
+    {% endif %} 
+    {% endcomment %}
+
+    <button>
+        <a href="{% provider_login_url "google" next='/secret' %}">Login with Google</a>
+    </button>
+    <button>
+        <a href="{% provider_login_url "github" next='/secret' %}">Login with GitHub</a>
+    </button>
+    <button>
+        <a href="{% provider_login_url "facebook" next='/secret' %}">Login with Facebook</a>
+    </button>
 {% endblock content %}

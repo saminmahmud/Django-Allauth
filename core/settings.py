@@ -11,8 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
-
-from django.conf.global_settings import EMAIL_BACKEND
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -43,6 +42,10 @@ INSTALLED_APPS = [
     # Allauth 
     'allauth',
     'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.github',
     # Local apps
     'accounts',
 
@@ -161,3 +164,44 @@ LOGOUT_REDIRECT_URL = '/'
 # ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = True  # Enable email verification by code. (default: False). And set ACCOUNT_EMAIL_VERIFICATION to 'mandatory' or 'optional'.
 
 ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'  # Custom signup form to include first_name and last_name fields
+
+
+# Google Social Account Provider Settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': config('OAUTH_GOOGLE_CLIENT_ID'),
+            'secret': config('OAUTH_GOOGLE_SECRET'),
+        },
+        'EMAIL_AUTHENTICATION': True,
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+    },
+    'github': {
+        'APP': {
+            'client_id': config('OAUTH_GITHUB_CLIENT_ID'),
+            'secret': config('OAUTH_GITHUB_SECRET'),
+        },
+        'SCOPE': [
+            'user',
+            'repo',
+            'read:org',
+        ],
+    },
+    'facebook': {
+        'APP': {
+            'client_id': config('OAUTH_FACEBOOK_CLIENT_ID'),
+            'secret': config('OAUTH_FACEBOOK_SECRET'),
+        },
+        'AUTH_PARAMS': {
+            'auth_type': 'reauthenticate',
+        },
+    },
+}
+
+SOCIALACCOUNT_LOGIN_ON_GET = True  # Automatically log in users after social signup
+
+# Linking Existing user accounts with social accounts
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
