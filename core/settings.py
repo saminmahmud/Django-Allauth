@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     # Local apps
+    'accounts',
 
 ]
 
@@ -149,3 +150,4 @@ LOGOUT_REDIRECT_URL = '/'
 
 # ACCOUNT_EMAIL_VERIFICATION_BY_CODE_ENABLED = True  # Enable email verification by code. (default: False). And set ACCOUNT_EMAIL_VERIFICATION to 'mandatory' or 'optional'.
 
+ACCOUNT_SIGNUP_FORM_CLASS = 'accounts.forms.CustomSignupForm'  # Custom signup form to include first_name and last_name fields
