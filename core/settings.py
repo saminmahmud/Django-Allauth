@@ -126,9 +126,11 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-# Allauth Docs: https://docs.allauth.org/en/latest/index.html
 
 # Allauth Configuration
+
+# Allauth Docs: https://docs.allauth.org/en/latest/index.html
+# Allauth Custom Templates: https://codeberg.org/allauth/django-allauth/src/branch/main/allauth/templates/account
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
