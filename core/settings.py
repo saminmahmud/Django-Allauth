@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-s^cjj!4b)(w2r2obc06hg)1$3h0*b_j0h)ecg-^kigazaupom-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     # Allauth 
     'allauth',
     'allauth.account',
@@ -132,6 +133,12 @@ STATIC_URL = 'static/'
 # Allauth Docs: https://docs.allauth.org/en/latest/index.html
 # Allauth Custom Templates: https://codeberg.org/allauth/django-allauth/src/branch/main/allauth/templates/account
 
+SITE_ID = 2
+'''
+Domain name: 127.0.0.1:8000
+Display name: 127.0.0.1:8000
+'''
+
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
@@ -140,10 +147,11 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
-ACCOUNT_EMAIL_VERIFICATION = 'none' # options: 'optional', 'mandatory', 'none'
-
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' 
 
+ACCOUNT_EMAIL_VERIFICATION = 'optional' # options: 'optional', 'mandatory', 'none'
+
+LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = 'secret'
 LOGOUT_REDIRECT_URL = '/'
 
